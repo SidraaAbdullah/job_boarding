@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import NavBar from "./Components/layout/NavBar";
+import Dashboard from "./Components/dashboard/Dashboard";
+import PostDetail from "./Components/JobPosting/PostDetail";
+import SignIn from "./Components/auth/SignIn";
+import SignUp from "./Components/auth/SignUp";
+import CreatePost from "./Components/JobPosting/CreatePost";
+import SubmitDetail from "./Components/JobPosting/SubmitDetail";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div>
+        <NavBar />
+        <Switch>
+          <Route exact path="/" component={Dashboard} />
+          <Route path="/post/:id" component={PostDetail} />
+          <Route path="/submitDetail" component={SubmitDetail} />
+          <Route path="/signin" component={SignIn} />
+          <Route path="/signup" component={SignUp} />
+          <Route path="/create" component={CreatePost} />
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
