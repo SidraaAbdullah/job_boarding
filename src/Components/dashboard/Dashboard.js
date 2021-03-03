@@ -16,7 +16,9 @@ class Dashboard extends React.Component {
           <div className="col s12 m6">
             <PostLists posts={posts} />
           </div>
-          <div className="col s12 m5 offset-m1"></div>
+          <div className="col s12 m5 offset-m1">
+          
+          </div>
         </div>
       </div>
     );

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { signUp } from "../../Store/Actions/AuthAction";
+import { Dropdown, DropdownButton } from "react-bootstrap";
 
 class SignUp extends Component {
   state = {
@@ -9,6 +10,7 @@ class SignUp extends Component {
     password: "",
     firstName: "",
     lastName: "",
+    roles: "",
   };
   handleChange = (e) => {
     this.setState({
@@ -44,7 +46,11 @@ class SignUp extends Component {
             <input type="text" id="lastName" onChange={this.handleChange} />
           </div>
           <div className="input-field">
-            <button className="btn grey darken-3 z-depth-0">Sign up</button>
+            <label htmlFor="lastName">Login as Student or Tutor </label>
+            <input type="text" id="roles" onChange={this.handleChange} />
+          </div>
+          <div className="input-field">
+            <button className="btn blue z-depth-0">Sign up</button>
             <div className="red-text center">
               {authError ? <p>{authError}</p> : null}
             </div>
@@ -56,6 +62,7 @@ class SignUp extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
     auth: state.firebase.auth,
     authError: state.auth.authError,

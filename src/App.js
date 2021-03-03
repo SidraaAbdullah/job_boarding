@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "./Components/layout/NavBar";
 import Dashboard from "./Components/dashboard/Dashboard";
 import PostDetail from "./Components/JobPosting/PostDetail";

@@ -4,21 +4,39 @@ import { connect } from "react-redux";
 
 const SignedInLink = (props) => {
   const { profile } = props;
-  return (
-    <ul className="right ">
-      <li>
-        <NavLink to="/create">New Post</NavLink>{" "}
-      </li>
-      <li>
-        <a onClick={props.signOut}>Log Out</a>{" "}
-      </li>
-      <li>
-        <NavLink to="/" className="btn btn-floating pink lighten-1">
-          {profile.initials}
-        </NavLink>{" "}
-      </li>
-    </ul>
-  );
+  if (profile.roles === "Student") {
+    return (
+      <ul className="right ">
+        <li>
+          <NavLink to="/create">New Post</NavLink>{" "}
+        </li>
+        <li>
+          <a onClick={props.signOut}>Log Out</a>{" "}
+        </li>
+        <li>
+          <NavLink to="/" className="btn btn-floating pink lighten-1">
+            {profile.initials}
+          </NavLink>{" "}
+        </li>
+      </ul>
+    );
+  }
+  if (profile.roles === "Tutor") {
+    return (
+      <ul className="right ">
+        <li>
+          <a onClick={props.signOut}>Log Out</a>{" "}
+        </li>
+        <li>
+          <NavLink to="/" className="btn btn-floating pink lighten-1">
+            {profile.initials}
+          </NavLink>
+        </li>
+      </ul>
+    );
+  } else {
+    return <div className="center">User not found</div>;
+  }
 };
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -27,4 +45,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(null, mapDispatchToProps)(SignedInLink);
-

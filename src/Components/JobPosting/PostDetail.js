@@ -5,40 +5,72 @@ import { Link, Redirect } from "react-router-dom";
 import moment from "moment";
 
 const PostDetail = (props) => {
-  const { post, auth, apply } = props;
+  const { post, auth, profile } = props;
   if (!auth.uid) return <Redirect to="/signin" />;
-  if (post) {
-    return (
-      <div className="container section post-details">
-        <div className="card z-depth-0">
-          <div className="card-content">
-            <span className="card-title">{post.title}</span>
-            <p>{post.content}</p>
-          </div>
-          <div className="card-action gret lighten-4 grey-text">
-            <div>
-              Posted by {post.authorFirstName} {post.authorLastName}
+  if (profile.roles === "Student") {
+    if (post) {
+      return (
+        <div className="container section post-details">
+          <div className="card z-depth-0">
+            <div className="card-content">
+              <span className="card-title">{post.title}</span>
+              <p>{post.content}</p>
             </div>
-            <div>
-              <p className="grey-text">
-                {moment(post.createdAt.toDate().toString()).calendar()}
-              </p>
-            </div>
-            <div className="center">
-              <Link to={`/submitDetail`}>
-                <button className="btn grey darken-3 z-depth-0">Apply</button>
-              </Link>
+            <div className="card-action gret lighten-4 grey-text">
+              <div>
+                Posted by {post.authorFirstName} {post.authorLastName}
+              </div>
+              <div>
+                <p className="grey-text">
+                  {moment(post.createdAt.toDate().toString()).calendar()}
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    );
-  } else {
-    return (
-      <div className="container center">
-        <p>Loading post...</p>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div className="container center">
+          <p>Loading post...</p>
+        </div>
+      );
+    }
+  }
+  if (profile.roles === "Tutor") {
+    if (post) {
+      return (
+        <div className="container section post-details">
+          <div className="card z-depth-0">
+            <div className="card-content">
+              <span className="card-title">{post.title}</span>
+              <p>{post.content}</p>
+            </div>
+            <div className="card-action gret lighten-4 grey-text">
+              <div>
+                Posted by {post.authorFirstName} {post.authorLastName}
+              </div>
+              <div>
+                <p className="grey-text">
+                  {moment(post.createdAt.toDate().toString()).calendar()}
+                </p>
+              </div>
+              <div className="center">
+                <Link to={`/submitDetail`}>
+                  <button className="btn pink lighten-1 z-depth-0">Apply</button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="container center">
+          <p>Loading post...</p>
+        </div>
+      );
+    }
   }
 };
 
@@ -49,6 +81,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     post: post,
     auth: state.firebase.auth,
+    profile: state.firebase.profile,
   };
 };
 

@@ -64,7 +64,6 @@ const store = createStore(
 // };
 const rrfConfig = {
   userProfile: "users",
-  adminProfile: "admin",
   useFirestoreForProfile: true,
 };
 const rrfProps = {
