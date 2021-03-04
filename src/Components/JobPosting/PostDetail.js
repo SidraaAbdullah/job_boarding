@@ -5,9 +5,9 @@ import { Link, Redirect } from "react-router-dom";
 import moment from "moment";
 
 const PostDetail = (props) => {
-  const { post, auth, profile } = props;
+  const { post, auth, profile, postId } = props;
   if (!auth.uid) return <Redirect to="/signin" />;
-  if (profile.roles === "Student") {
+  if (profile.roles === "Student" || profile.roles === "student") {
     if (post) {
       return (
         <div className="container section post-details">
@@ -37,7 +37,7 @@ const PostDetail = (props) => {
       );
     }
   }
-  if (profile.roles === "Tutor") {
+  if (profile.roles === "Tutor" || profile.roles === "tutor") {
     if (post) {
       return (
         <div className="container section post-details">
@@ -56,8 +56,10 @@ const PostDetail = (props) => {
                 </p>
               </div>
               <div className="center">
-                <Link to={`/submitDetail`}>
-                  <button className="btn pink lighten-1 z-depth-0">Apply</button>
+                <Link to={`/${postId}/submitDetail`}>
+                  <button className="btn pink lighten-1 z-depth-0">
+                    Apply
+                  </button>
                 </Link>
               </div>
             </div>
@@ -78,10 +80,12 @@ const mapStateToProps = (state, ownProps) => {
   const id = ownProps.match.params.id;
   const posts = state.firestore.data.posts;
   const post = posts ? posts[id] : null;
+
   return {
     post: post,
     auth: state.firebase.auth,
     profile: state.firebase.profile,
+    postId: id,
   };
 };
 

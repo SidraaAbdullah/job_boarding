@@ -27,18 +27,22 @@ class SubmitDetail extends React.Component {
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit} className="white">
-          <h5 className="grey-text text-darken-3">Apply for a Post</h5>
+          <h5 className="grey-text text-darken-3">Apply for a Post </h5>
           <div className="input-field">
             <label htmlFor="title">Name</label>
             <input type="text" id="name" onChange={this.handleChange} />
           </div>
           <div className="input-field">
-          <label htmlFor="title">Email</label>
-          <input type="text" id="email" onChange={this.handleChange} />
-        </div>
-        <div className="input-field">
+            <label htmlFor="title">Email</label>
+            <input type="text" id="email" onChange={this.handleChange} />
+          </div>
+          <div className="input-field">
             <label htmlFor="title">Qualification</label>
-            <input type="text" id="qualification" onChange={this.handleChange} />
+            <input
+              type="text"
+              id="qualification"
+              onChange={this.handleChange}
+            />
           </div>
           <div className="input-field">
             <label htmlFor="title">Phone</label>
