@@ -1,13 +1,16 @@
-export const applyPosts = (applyPost) => {
+export const applyPosts = (applyPost, postId, stdId,postTitle) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firestore = getFirestore();
-    const authorId = getState().firebase.auth.uid;
+    const teacherId = getState().firebase.auth.uid;
 
     firestore
       .collection("applyPost")
       .add({
         ...applyPost,
-        authorId: authorId,
+        teacherId: teacherId,
+        postId: postId,
+        studentId: stdId,
+        postTitle:postTitle,
         createdAt: new Date(),
       })
       .then(() => {

@@ -4,7 +4,6 @@ export const createPost = (post) => {
     const firestore = getFirestore();
     const profile = getState().firebase.profile;
     const authorId = getState().firebase.auth.uid;
-
     firestore
       .collection("posts")
       .add({
@@ -13,7 +12,6 @@ export const createPost = (post) => {
         authorLastName: profile.lastName,
         authorId: authorId,
         createdAt: new Date(),
-        
       })
       .then(() => {
         dispatch({ type: "CREATE_POST", post });

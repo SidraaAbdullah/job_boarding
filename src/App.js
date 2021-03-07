@@ -5,8 +5,9 @@ import Dashboard from "./Components/dashboard/Dashboard";
 import PostDetail from "./Components/JobPosting/PostDetail";
 import SignIn from "./Components/auth/SignIn";
 import SignUp from "./Components/auth/SignUp";
+import CreateSubmit from "./Components/JobApplyig/CreateSubmit";
 import CreatePost from "./Components/JobPosting/CreatePost";
-import SubmitDetail from "./Components/JobPosting/SubmitDetail";
+import SubmitDetail from "./Components/JobApplyig/SubmitDetail";
 
 const App = () => {
   return (
@@ -16,7 +17,8 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Dashboard} />
           <Route path="/post/:id" component={PostDetail} />
-          <Route path="/:id/submitDetail" component={SubmitDetail} />
+          <Route path="/applyPost/:id" component={SubmitDetail} />
+          <Route path="/:id/submitDetail" component={CreateSubmit} />
           <Route path="/signin" component={SignIn} />
           <Route path="/signup" component={SignUp} />
           <Route path="/create" component={CreatePost} />

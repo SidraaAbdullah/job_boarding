@@ -20,48 +20,13 @@ import {
 import fbConfig from "./Config/FBConfig";
 import firebase from "firebase/app";
 
-// const store = createStore(
-//   RootReducer,
-//   compose(
-//     applyMiddleware(thunk.withExtraArgument({ getFirestore, getFirebase })),
-//     reduxFirestore(firebase, fbConfig),
-// reactReduxFirebase(fbConfig, {useFirestoreForProfile: true, userProfile: 'users', attachAuthIsReady: true})
-
-//   )
-// );
-// store.firebaseAuthIsReady.then(() => {
-//   const rrfProps = {
-//     firebase,
-//     config: fbConfig,
-//     dispatch: store.dispatch,
-//     createFirestoreInstance,
-//   };
-// })
-
-// ReactDOM.render(
-//   <Provider store={store}>
-//     <ReactReduxFirebaseProvider {...rrfProps}>
-//       <App />
-//     </ReactReduxFirebaseProvider>
-//   </Provider>,
-//   document.getElementById("root")
-// );
-
-// reportWebVitals();
-
 const store = createStore(
   RootReducer,
   compose(
-    applyMiddleware(thunk.withExtraArgument({ getFirestore, getFirebase })) // if you are using thunk
+    applyMiddleware(thunk.withExtraArgument({ getFirestore, getFirebase }))
   )
 );
 
-// const rrfProps = {
-//   firebase,
-//   config: fbConfig,
-//   dispatch: store.dispatch,
-//   createFirestoreInstance,
-// };
 const rrfConfig = {
   userProfile: "users",
   useFirestoreForProfile: true,

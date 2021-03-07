@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { applyPosts } from "../../Store/Actions/PostApplyAction";
 import { Redirect } from "react-router-dom";
 
-class SubmitDetail extends React.Component {
+class CreateSubmit extends React.Component {
   state = {
     email: "",
     phone: "",
@@ -17,7 +17,10 @@ class SubmitDetail extends React.Component {
   };
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.applyPosts(this.state);
+    const postId = this.props.match.params.id;
+    const postTitle = this.props.location.search.split("e=");
+    const stdId = this.props.location.search.split(" ");
+    this.props.applyPosts(this.state, postId, stdId[1], postTitle[1]);
     this.props.history.push("/");
   };
   render() {
@@ -30,11 +33,21 @@ class SubmitDetail extends React.Component {
           <h5 className="grey-text text-darken-3">Apply for a Post </h5>
           <div className="input-field">
             <label htmlFor="title">Name</label>
-            <input type="text" id="name" onChange={this.handleChange} />
+            <input
+              type="text"
+              id="name"
+              onChange={this.handleChange}
+              required
+            />
           </div>
           <div className="input-field">
             <label htmlFor="title">Email</label>
-            <input type="text" id="email" onChange={this.handleChange} />
+            <input
+              type="text"
+              id="email"
+              onChange={this.handleChange}
+              required
+            />
           </div>
           <div className="input-field">
             <label htmlFor="title">Qualification</label>
@@ -42,11 +55,18 @@ class SubmitDetail extends React.Component {
               type="text"
               id="qualification"
               onChange={this.handleChange}
+              required
             />
           </div>
           <div className="input-field">
             <label htmlFor="title">Phone</label>
-            <input type="text" id="phone" onChange={this.handleChange} />
+            <input
+              type="number"
+              id="phone"
+              onChange={this.handleChange}
+             
+              required
+            />
           </div>
           <div className="input-field">
             <button className="btn pink lighten-1 z-depth-0">Submit</button>
@@ -65,8 +85,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    applyPosts: (applyPost) => dispatch(applyPosts(applyPost)),
+    applyPosts: (applyPost, postId, stdId, postTitle) =>
+      dispatch(applyPosts(applyPost, postId, stdId, postTitle)),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SubmitDetail);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateSubmit);

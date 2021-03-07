@@ -56,7 +56,9 @@ const PostDetail = (props) => {
                 </p>
               </div>
               <div className="center">
-                <Link to={`/${postId}/submitDetail`}>
+                <Link
+                  to={`/${postId}/submitDetail?studentId= ${post.authorId} ?studentPostTitle=${post.title}`}
+                >
                   <button className="btn pink lighten-1 z-depth-0">
                     Apply
                   </button>

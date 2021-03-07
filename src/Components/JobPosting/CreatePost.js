@@ -28,7 +28,12 @@ class CreatePost extends React.Component {
           <h5 className="grey-text text-darken-3">Create new Post</h5>
           <div className="input-field">
             <label htmlFor="title">Title</label>
-            <input type="text" id="title" onChange={this.handleChange} />
+            <input
+              type="text"
+              id="title"
+              onChange={this.handleChange}
+              required
+            />
           </div>
           <div className="input-field">
             <label htmlFor="content">Post Content</label>
@@ -36,6 +41,7 @@ class CreatePost extends React.Component {
               id="content"
               className="materialize-textarea"
               onChange={this.handleChange}
+              required
             ></textarea>
           </div>
           <div className="input-field">
