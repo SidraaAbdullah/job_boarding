@@ -4,7 +4,7 @@ import SubmitSummary from "../JobApplyig/SubmitSummary";
 const SubmitLists = (props) => {
   const { applyPosts } = props;
   return (
-    <ul className="notification">
+    <ul className="apply-list section">
       {applyPosts &&
         applyPosts.map((applyPost) => {
           return (

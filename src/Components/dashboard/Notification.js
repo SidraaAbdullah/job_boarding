@@ -19,6 +19,7 @@ const Notification = (props) => {
   }
 };
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
     profile: state.firebase.profile,
   };

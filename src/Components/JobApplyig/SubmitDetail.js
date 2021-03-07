@@ -5,35 +5,38 @@ import { Link, Redirect } from "react-router-dom";
 import moment from "moment";
 
 const SubmitDetail = (props) => {
-  const { post, auth, postId, applyPost } = props;
+  const { auth, postId, applyPost, studentId } = props;
   if (!auth.uid) return <Redirect to="/signin" />;
-  if (post) {
+  if (applyPost) {
     return (
       <div className="container section apply-details">
         <div className="card z-depth-0">
           <div className="card-content">
-            <span className="card-title">{applyPost.postTitle}</span>
-            <p>{applyPost.name}</p>
-            <p>{applyPost.email}</p>
-            <p>{applyPost.qualification}</p>
-            <p>{applyPost.phone}</p>
+            <span className="card-title">
+              {applyPost.name} is applied for {applyPost.postTitle}
+            </span>
+            <p>Name : {applyPost.name}</p>
+            <p>Email : {applyPost.email}</p>
+            <p>Qualification : {applyPost.qualification}</p>
+            <p>PhoneNo : {applyPost.phone}</p>
           </div>
           <div className="card-action gret lighten-4 grey-text">
             <div>
-              {applyPost.name} is applied for {post.title}
-            </div>
-            <div>
               <p className="grey-text">
-                {moment(post.createdAt.toDate().toString()).calendar()}
+                {moment(applyPost.createdAt.toDate().toString()).calendar()}
               </p>
             </div>
           </div>
-          <div className="center">
-            <Link to={`/${postId}/createSubmit?studentId=${post.authorId}`}>
-              <button className="btn pink lighten-1 z-depth-0">Accept</button>
+          <div className="center ">
+            <Link to="">
+              <button className="btn pink lighten-1 z-depth-0 mr-5">
+                Accept
+              </button>
             </Link>
-            <Link to={`/${postId}/createSubmit?studentId=${post.authorId}`}>
-              <button className="btn pink lighten-1 z-depth-0">Reject</button>
+            <Link to="">
+              <button className="btn pink lighten-1 z-depth-0 ml-5">
+                Reject
+              </button>
             </Link>
           </div>
         </div>
@@ -53,10 +56,12 @@ const mapStateToProps = (state, ownProps) => {
   const applyPosts = state.firestore.data.applyPost;
   const applyPost = applyPosts ? applyPosts[id] : null;
 
+  console.log(applyPost);
   return {
     applyPost: applyPost,
     auth: state.firebase.auth,
     postId: id,
+    studentId: state.firebase.auth,
   };
 };
 

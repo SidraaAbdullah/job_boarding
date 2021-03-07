@@ -1,10 +1,10 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import { signOut } from "../../Store/Actions/AuthAction";
 import { connect } from "react-redux";
 
 const SignedInLink = (props) => {
   const { profile } = props;
-  if (profile.roles === "Student") {
+  if (profile.roles === "Student" || profile.roles === "student") {
     return (
       <ul className="right ">
         <li>
@@ -21,7 +21,7 @@ const SignedInLink = (props) => {
       </ul>
     );
   }
-  if (profile.roles === "Tutor") {
+  if (profile.roles === "Tutor" || profile.roles === "tutor") {
     return (
       <ul className="right ">
         <li>
@@ -35,7 +35,7 @@ const SignedInLink = (props) => {
       </ul>
     );
   } else {
-    return <div className="center">User not found</div>;
+    return <Redirect to="/signin" />;
   }
 };
 const mapDispatchToProps = (dispatch) => {
