@@ -8,7 +8,7 @@ const PaymentLists = (props) => {
       {payments &&
         payments.map((payment) => {
           return (
-            <Link to={`/payment/${payment.id}`}>
+            <Link to="/">
               <PaymentSumary payment={payment} />
             </Link>
           );

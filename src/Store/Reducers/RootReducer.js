@@ -12,6 +12,7 @@ const RootReducer = combineReducers({
   firestore: firestoreReducer,
   firebase: firebaseReducer,
   applyPost: PostApplyReducer,
+  payment: PaymentReducer,
   
 });
 export default RootReducer;
