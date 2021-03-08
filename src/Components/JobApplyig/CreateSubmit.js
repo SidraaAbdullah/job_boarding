@@ -23,6 +23,7 @@ class CreateSubmit extends React.Component {
     this.props.applyPosts(this.state, postId, stdId[1], postTitle[1]);
     this.props.history.push("/");
   };
+ 
   render() {
     const { auth } = this.props;
     if (!auth.uid) return <Redirect to="/signin" />;
@@ -64,7 +65,6 @@ class CreateSubmit extends React.Component {
               type="number"
               id="phone"
               onChange={this.handleChange}
-             
               required
             />
           </div>

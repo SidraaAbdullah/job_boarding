@@ -6,10 +6,11 @@ import moment from "moment";
 
 const SubmitDetail = (props) => {
   const { auth, postId, applyPost, studentId } = props;
-  if (!auth.uid) return <Redirect to="/signin" />;
-  if (applyPost) {
-    return (
-      <div className="container section apply-details">
+  return !auth.uid ? (
+    <Redirect to="/signin" />
+  ) : (
+    <div className="container section apply-details">
+      {applyPost ? (
         <div className="card z-depth-0">
           <div className="card-content">
             <span className="card-title">
@@ -28,7 +29,9 @@ const SubmitDetail = (props) => {
             </div>
           </div>
           <div className="center ">
-            <Link to="">
+            <Link
+              to={`/accept/${postId} ?studentPostTitle= ${applyPost.postTitle} ?teacherId=${applyPost.teacherId}`}
+            >
               <button className="btn pink lighten-1 z-depth-0 mr-5">
                 Accept
               </button>
@@ -40,15 +43,13 @@ const SubmitDetail = (props) => {
             </Link>
           </div>
         </div>
-      </div>
-    );
-  } else {
-    return (
-      <div className="container center">
-        <p>Loading Notification...</p>
-      </div>
-    );
-  }
+      ) : (
+        <div className="container center">
+          <p>Loading Notification...</p>
+        </div>
+      )}
+    </div>
+  );
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -56,7 +57,6 @@ const mapStateToProps = (state, ownProps) => {
   const applyPosts = state.firestore.data.applyPost;
   const applyPost = applyPosts ? applyPosts[id] : null;
 
-  console.log(applyPost);
   return {
     applyPost: applyPost,
     auth: state.firebase.auth,

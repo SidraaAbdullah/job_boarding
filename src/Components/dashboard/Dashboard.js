@@ -8,7 +8,7 @@ import Notification from "./Notification";
 
 class Dashboard extends React.Component {
   render() {
-    const { posts, auth, applyPosts } = this.props;
+    const { posts, auth, applyPosts, payments } = this.props;
     if (!auth.uid) return <Redirect to="/signin" />;
 
     return (
@@ -18,7 +18,7 @@ class Dashboard extends React.Component {
             <PostLists posts={posts} />
           </div>
           <div className="col s12 m5 offset-m1">
-            <Notification applyPosts={applyPosts} />
+            <Notification applyPosts={applyPosts} payments={payments} />
           </div>
         </div>
       </div>
@@ -27,10 +27,12 @@ class Dashboard extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state)
   return {
     posts: state.firestore.ordered.posts,
     auth: state.firebase.auth,
     applyPosts: state.firestore.ordered.applyPost,
+    payments: state.firestore.ordered.payments,
   };
 };
 
@@ -39,5 +41,6 @@ export default compose(
   firestoreConnect([
     { collection: "posts" },
     { collection: "applyPost", limit: 6 },
+    { collection: "payments", limit: 6 },
   ])
 )(Dashboard);

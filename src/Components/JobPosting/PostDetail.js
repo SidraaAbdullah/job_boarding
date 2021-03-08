@@ -57,7 +57,7 @@ const PostDetail = (props) => {
               </div>
               <div className="center">
                 <Link
-                  to={`/${postId}/submitDetail?studentId= ${post.authorId} ?studentPostTitle=${post.title}`}
+                  to={`/${postId}/createSubmit?studentId= ${post.authorId} ?studentPostTitle=${post.title}`}
                 >
                   <button className="btn pink lighten-1 z-depth-0">
                     Apply
